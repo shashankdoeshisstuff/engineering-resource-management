@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   await dbConnect();
   
   try {
-    const { name, email, password, role, skills = [], seniority, employmentType, department } = await req.json();
+    const { name, email, password, role, skills = [], seniority, maxCapacity, department } = await req.json();
     
     // Check if user exists
     const existingUser = await User.findOne({ email });
@@ -17,7 +17,6 @@ export async function POST(req: Request) {
     
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const maxCapacity = employmentType === 'full-time' ? 100 : 50;
     
     // Create user
     const newUser = await User.create({
@@ -25,14 +24,19 @@ export async function POST(req: Request) {
       email,
       password: hashedPassword,
       role,
-      skills: skills.split(',').map((s: string) => s.trim()),
+      skills,
       seniority,
       maxCapacity,
       department
     });
     
     return NextResponse.json(
-      { id: newUser._id, email: newUser.email, name: newUser.name, role: newUser.role },
+      { 
+        id: newUser._id, 
+        email: newUser.email, 
+        name: newUser.name, 
+        role: newUser.role 
+      },
       { status: 201 }
     );
   } catch (error: any) {

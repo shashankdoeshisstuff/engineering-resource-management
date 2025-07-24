@@ -10,6 +10,7 @@ export interface IUser extends Document {
   seniority?: 'junior' | 'mid' | 'senior';
   maxCapacity: number;
   department?: string;
+  comparePassword: (password: string) => Promise<boolean>;
 }
 
 const UserSchema: Schema = new Schema({
@@ -23,15 +24,18 @@ const UserSchema: Schema = new Schema({
   department: String
 });
 
+// Fixed pre-save hook with proper typing
 UserSchema.pre<IUser>('save', async function (next) {
-  if (this.isModified('password')) {
-    this.password = await bcrypt.hash(this.password, 10);
+  if (this.isModified('password') || this.isNew) {
+    const user = this as IUser;
+    user.password = await bcrypt.hash(user.password, 10);
   }
   next();
 });
 
-UserSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
-  return bcrypt.compare(password, this.password);
+// Add comparePassword method
+UserSchema.methods.comparePassword = async function (password: string) {
+  return bcrypt.compare(password, (this as IUser).password);
 };
 
 export default mongoose.models.User || mongoose.model<IUser>('User', UserSchema);

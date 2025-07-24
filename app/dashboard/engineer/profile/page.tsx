@@ -1,8 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { getCurrentUser } from '@/app/api/auth/route';
+import { getCurrentUser } from '@/lib/auth';
 
 export default async function EngineerProfilePage() {
   const user = await getCurrentUser();

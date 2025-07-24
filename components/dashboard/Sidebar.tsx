@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 import { LayoutDashboard, Users, Folder, Calendar, Settings, LogOut } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
-export default function Sidebar({ role }: { role: 'manager' | 'engineer' }) {
+export default function Sidebar() {
   const pathname = usePathname();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const managerLinks = [
     { name: 'Dashboard', href: '/dashboard/manager', icon: LayoutDashboard },
@@ -22,7 +22,7 @@ export default function Sidebar({ role }: { role: 'manager' | 'engineer' }) {
     { name: 'Profile', href: '/dashboard/engineer/profile', icon: Settings },
   ];
 
-  const links = role === 'manager' ? managerLinks : engineerLinks;
+  const links = user?.role === 'manager' ? managerLinks : engineerLinks;
 
   return (
     <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40 w-64">

@@ -1,16 +1,13 @@
-import { Sidebar } from '@/components/dashboard/Sidebar';
-import { useAuth } from '@/context/AuthContext';
-import ProtectedRoute from '@/components/ui/ProtectedRoute';
+import AuthWrapper from '@/components/auth/AuthWrapper';
+import Sidebar from '@/components/dashboard/Sidebar';
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
-  
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ProtectedRoute allowedRoles={['manager', 'engineer']}>
+    <AuthWrapper allowedRoles={['manager', 'engineer']}>
       <div className="flex h-screen">
-        <Sidebar role={user?.role || 'engineer'} />
+        <Sidebar />
         <main className="flex-1 p-6 overflow-y-auto">{children}</main>
       </div>
-    </ProtectedRoute>
+    </AuthWrapper>
   );
 }

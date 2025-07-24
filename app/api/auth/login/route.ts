@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import User from '@/models/User';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   await dbConnect();
   const { email, password } = await req.json();
   
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     return response;
   } catch (error: any) {
     return NextResponse.json(
-      { error: error.message || 'Server error' },
+      { error: error.message || 'Internal server error' }, 
       { status: 500 }
     );
   }

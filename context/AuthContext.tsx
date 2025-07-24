@@ -46,35 +46,46 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    
-    if (res.ok) {
-      const userData = await res.json();
-      setUser(userData);
-      router.push('/dashboard');
-    } else {
-      throw new Error('Login failed');
+    setLoading(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      if (res.ok) {
+        const userData = await res.json();
+        setUser(userData);
+        router.push('/dashboard');
+      } else {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Login failed');
+      }
+    } catch (error: any) {
+      throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
   const signup = async (userData: any) => {
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData),
-    });
-    
-    if (res.ok) {
-      const newUser = await res.json();
-      // Automatically log in after signup
-      await login(userData.email, userData.password);
-    } else {
-      const errorData = await res.json();
-      throw new Error(errorData.error || 'Signup failed');
+    setLoading(true);
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Signup failed');
+      }
+      
+      return response.json();
+    } finally {
+      setLoading(false);
     }
   };
 

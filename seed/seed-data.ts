@@ -16,7 +16,7 @@ export async function seedDatabase() {
   const manager = await User.create({
     email: 'manager@example.com',
     name: 'Sarah Johnson',
-    password: await bcrypt.hash('manager123', 10),
+    password: 'manager123',
     role: 'manager',
     maxCapacity: 100
   });
@@ -25,7 +25,8 @@ export async function seedDatabase() {
   const engineer1 = await User.create({
     email: 'engineer1@example.com',
     name: 'Alex Chen',
-    password: await bcrypt.hash('engineer1', 10),
+    /* password: await bcrypt.hash('engineer1', 10), */
+    password: 'engineer1',
     role: 'engineer',
     skills: ['React', 'Node.js', 'TypeScript'],
     seniority: 'senior',

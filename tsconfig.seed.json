@@ -1,0 +1,8 @@
+// tsconfig.seed.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "noEmit": true
+  }
+}

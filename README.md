@@ -62,6 +62,18 @@
 ```
 
 # Engineering Resource Management System
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-52-49" src="https://github.com/user-attachments/assets/1da2c48c-bd84-49cc-8ea3-35f68ffd270f" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-42" src="https://github.com/user-attachments/assets/1ff4569b-d21d-4a8f-8784-3088913cb63b" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-38" src="https://github.com/user-attachments/assets/14f1383c-9c4a-4951-a4b0-6ca9ca907342" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-32" src="https://github.com/user-attachments/assets/3c975617-6f59-4d45-a257-f471821cbb04" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-27" src="https://github.com/user-attachments/assets/e59c39b5-6332-46a4-8bd7-8c44ea8b8097" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-10" src="https://github.com/user-attachments/assets/17ec527f-e69b-4282-a4e9-e33bdb3c3fb4" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-07" src="https://github.com/user-attachments/assets/c1338a7a-45de-440d-80b9-084ae28d9361" />
+<img width="1920" height="1077" alt="Screenshot From 2025-07-25 10-53-02" src="https://github.com/user-attachments/assets/97ae210a-abda-4f82-bf8c-7fba13a13527" />
+
+## Screen Shots
+
+
 
 ## Setup
 

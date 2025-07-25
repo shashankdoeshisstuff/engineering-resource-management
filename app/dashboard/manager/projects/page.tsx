@@ -1,7 +1,7 @@
 import ProjectsTable from '@/components/dashboard/ProjectsTable';
-import { getProjects } from '@/app/api/projects/route';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { getProjects } from '@/lib/projectService';
 
 export default async function ManagerProjectsPage() {
   const projects = await getProjects();

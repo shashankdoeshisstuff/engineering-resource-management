@@ -45,9 +45,16 @@ export async function POST(req: Request) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: error.message }, 
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: error.message || 'Internal server error' }, 
+      { error: 'Internal server error' }, 
       { status: 500 }
     );
   }

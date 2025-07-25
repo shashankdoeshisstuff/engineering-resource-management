@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Assignment from '@/models/Assignment';
-import { getCurrentUser } from '@/app/api/auth/route';
+import { getCurrentUser } from '@/lib/auth';
 
 export async function GET() {
   await dbConnect();

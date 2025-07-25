@@ -1,19 +1,20 @@
 'use client';
 
 import { useEffect, useState, ReactNode } from 'react';
+import * as Recharts from 'recharts';
 
 interface RechartsComponents {
-  BarChart: any;
-  Bar: any;
-  XAxis: any;
-  YAxis: any;
-  CartesianGrid: any;
-  Tooltip: any;
-  Legend: any;
-  ResponsiveContainer: any;
-  PieChart: any;
-  Pie: any;
-  Cell: any;
+  BarChart: typeof Recharts.BarChart;
+  Bar: typeof Recharts.Bar;
+  XAxis: typeof Recharts.XAxis;
+  YAxis: typeof Recharts.YAxis;
+  CartesianGrid: typeof Recharts.CartesianGrid;
+  Tooltip: typeof Recharts.Tooltip;
+  Legend: typeof Recharts.Legend;
+  ResponsiveContainer: typeof Recharts.ResponsiveContainer;
+  PieChart: typeof Recharts.PieChart;
+  Pie: typeof Recharts.Pie;
+  Cell: typeof Recharts.Cell;
 }
 
 interface ChartWrapperProps {
@@ -40,6 +41,7 @@ export default function ChartWrapper({ children }: ChartWrapperProps) {
         Cell: mod.Cell,
       });
     }
+
     loadRecharts();
   }, []);
 

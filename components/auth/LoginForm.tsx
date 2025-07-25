@@ -29,10 +29,11 @@ export default function LoginForm() {
     try {
       await login(values.email, values.password);
       router.push('/dashboard');
-    } catch (error) {
+    } catch {
       form.setError('password', { message: 'Invalid credentials' });
     }
   };
+
 
   return (
     <Form {...form}>

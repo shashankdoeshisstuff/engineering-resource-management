@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CapacityBar from '@/components/dashboard/CapacityBar';
-import { getEngineers } from '@/app/api/engineers/route';
+import { getEngineers } from '@/lib/engineerService';
 
 export default async function ManagerDashboard() {
   const engineers = await getEngineers();
@@ -11,7 +11,7 @@ export default async function ManagerDashboard() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {engineers.map(engineer => (
-          <Card key={engineer.id}>
+          <Card key={engineer._id}>
             <CardHeader>
               <CardTitle>{engineer.name}</CardTitle>
             </CardHeader>

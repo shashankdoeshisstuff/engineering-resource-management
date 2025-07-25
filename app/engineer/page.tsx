@@ -1,5 +1,5 @@
 import AssignmentsTable from '@/components/dashboard/AssignmentsTable';
-import { getMyAssignments } from '@/app/api/assignments/route';
+import { getMyAssignments } from '@/lib/assignments';
 
 export default async function EngineerDashboard() {
   const assignments = await getMyAssignments();

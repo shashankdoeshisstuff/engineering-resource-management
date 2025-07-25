@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import User from '@/models/User';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs'; // ✅ added this import
 
 export async function POST(req: NextRequest) {
   await dbConnect();
@@ -45,7 +46,8 @@ export async function GET(req: NextRequest) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
     const user = await User.findById(decoded.id).select('-password');
     return NextResponse.json(user);
-  } catch (error) {
+  } catch (error: unknown) {
+    console.error(error); // ✅ prevents lint warning
     return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
   }
 }

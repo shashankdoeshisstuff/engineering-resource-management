@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import AssignmentsTable from '@/components/dashboard/AssignmentsTable';
 import CapacityBar from '@/components/dashboard/CapacityBar';
 import SkillTags from '@/components/dashboard/SkillTags';
 import { Button } from '@/components/ui/button';

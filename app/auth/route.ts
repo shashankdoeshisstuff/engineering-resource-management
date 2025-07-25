@@ -51,7 +51,11 @@ export async function GET(req: NextRequest) {
     await dbConnect();
     const user = await User.findById(decoded.id).select('-password');
     return NextResponse.json(user);
-  } catch (error) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('JWT verification failed:', error.message);
+    }
+
     return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
   }
 }

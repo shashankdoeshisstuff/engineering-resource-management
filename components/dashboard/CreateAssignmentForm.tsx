@@ -3,7 +3,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -30,10 +37,23 @@ const formSchema = z.object({
   role: z.string().min(1, 'Role is required'),
 });
 
-export default function CreateAssignmentForm({ engineers, projects }: { 
-  engineers: any[]; 
-  projects: any[] 
-}) {
+// Define types for engineers and projects
+type Engineer = {
+  _id: string;
+  name: string;
+};
+
+type Project = {
+  _id: string;
+  name: string;
+};
+
+interface CreateAssignmentFormProps {
+  engineers: Engineer[];
+  projects: Project[];
+}
+
+export default function CreateAssignmentForm({ engineers, projects }: CreateAssignmentFormProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { user } = useAuth();
@@ -134,7 +154,7 @@ export default function CreateAssignmentForm({ engineers, projects }: {
                     min="1"
                     max="100"
                     {...field}
-                    onChange={(e) => field.onChange(parseInt(e.target.value))}
+                    onChange={(e) => field.onChange(parseInt(e.target.value, 10))}
                   />
                 </FormControl>
                 <FormMessage />

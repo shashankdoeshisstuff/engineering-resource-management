@@ -1,11 +1,13 @@
 import CreateAssignmentForm from '@/components/dashboard/CreateAssignmentForm';
-import { getEngineers } from '@/app/api/engineers/route';
-import { getProjects } from '@/app/api/projects/route';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getEngineers } from '@/lib/engineerService';
+import { getProjects } from '@/lib/projectService';
+import { SerializedEngineer } from '@/types/engineer';
+import { SerializedProject } from '@/types/project';
 
 export default async function ManagerAssignmentsPage() {
-  const engineers = await getEngineers();
-  const projects = await getProjects();
+  const engineers: SerializedEngineer[] = await getEngineers();
+  const projects: SerializedProject[] = await getProjects();
 
   return (
     <div className="space-y-6">
@@ -14,7 +16,10 @@ export default async function ManagerAssignmentsPage() {
           <CardTitle>Create New Assignment</CardTitle>
         </CardHeader>
         <CardContent>
-          <CreateAssignmentForm engineers={engineers} projects={projects} />
+          <CreateAssignmentForm 
+            engineers={engineers} 
+            projects={projects} 
+          />
         </CardContent>
       </Card>
     </div>

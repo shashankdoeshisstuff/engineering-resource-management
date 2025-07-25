@@ -3,10 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { 
-  Users, 
   FolderPlus, 
   UserPlus, 
-  Briefcase,
   BarChart as BarChartIcon,
   PieChart as PieChartIcon
 } from 'lucide-react';
@@ -14,9 +12,6 @@ import ChartWrapper from '@/components/dashboard/ChartWrapper';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
-// Mock data - in a real app, this would come from your API
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 const engineerData = [
   { name: 'Alex Chen', skills: ['React', 'Node.js', 'TypeScript'], seniority: 'senior', allocated: 80, maxCapacity: 100, department: 'Frontend' },
@@ -201,7 +196,7 @@ export default function ManagerDashboard() {
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
-                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                        label={({ name, percent }) => `${name}: ${(Number(percent) * 100).toFixed(0)}%`}
                       >
                         {utilizationData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />

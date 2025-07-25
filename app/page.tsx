@@ -17,7 +17,7 @@ export default async function HomePage() {
           Engineering Resource Management System
         </h1>
         <p className="text-lg text-gray-600 mb-8">
-          Efficiently manage your engineering team's assignments, capacity, and project allocations
+          {`Efficiently manage your engineering team's assignments, capacity, and project allocations`}
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link href="/auth/login">

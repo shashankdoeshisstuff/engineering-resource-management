@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CapacityBar from '@/components/dashboard/CapacityBar';
-import { getEngineers } from '@/app/api/engineers/route';
 import SkillTags from '@/components/dashboard/SkillTags';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { getEngineers } from '@/lib/engineerService';
 
 export default async function ManagerTeamPage() {
   const engineers = await getEngineers();

@@ -50,7 +50,6 @@ export default function SignupForm() {
     setError('');
     
     try {
-      // Prepare user data
       const userData = {
         name: values.name,
         email: values.email,
@@ -64,7 +63,6 @@ export default function SignupForm() {
         })
       };
 
-      // Send signup request
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -76,11 +74,11 @@ export default function SignupForm() {
         throw new Error(errorData.error || 'Signup failed');
       }
 
-      // Automatically log in after successful signup
       await login(values.email, values.password);
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during signup');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during signup';
+      setError(errorMessage);
       console.error('Signup error:', err);
     } finally {
       setIsLoading(false);

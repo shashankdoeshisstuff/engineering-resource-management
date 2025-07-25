@@ -25,7 +25,7 @@ async function getUserFromToken(token: string | undefined) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
     await dbConnect();
     return await User.findById(decoded.id).select('-password');
-  } catch (error) {
+  } catch {
     return null;
   }
 }
